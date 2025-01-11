@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="jakarta.faces.passthrough">
+
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+
+    <h:body>
+        <h:form>
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Customer Name" for="customerName"/>
+                    <h:inputText id="customerName" value ="#{customerController.customer.name}"/>
+                    <h:message for="customerName" />
+                </h:panelGroup>
+            </p>
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Contact Number" for="contactNumber"/>
+                    <h:inputText p:type="" id="contactNumber" value="#{customerController.customer.phoneNumber}"/>
+                    <h:message for="contactNumber" />
+
+                </h:panelGroup>
+            </p>
+
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Email Address" for="emailAddress"/>
+                    <h:inputText p:type="" id="emailAddress" value="#{customerController.customer.email}"/>
+                    <h:message for="emailAddress" />
+
+                </h:panelGroup>
+            </p>
+
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Address" for="address"/>
+                    <h:inputText p:type="" id="address" value="#{customerController.customer.address}"/>
+                    <h:message for="address" />
+
+                </h:panelGroup>
+            </p>
+
+            <h:commandButton value="Create customer" action="#{customerController.saveCustomer()}"/>
+        </h:form>
+
+
+    </h:body>
+</html>

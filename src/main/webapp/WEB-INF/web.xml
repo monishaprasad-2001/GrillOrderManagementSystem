@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <context-param>
+        <param-name>jakarta.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    
+    <welcome-file-list>
+        <welcome-file>login.xhtml</welcome-file>
+    </welcome-file-list>
+    
+    <error-page>
+        <error-code>403</error-code>
+        <location>/errors/access.xhtml</location>
+    </error-page>
+
+    <error-page>
+        <location>/errors/error.xhtml</location>
+    </error-page>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Admin Only Content</web-resource-name>
+            <url-pattern>/admin/*</url-pattern>
+            <url-pattern>/welcome.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN_ROLE</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Staff Only Content</web-resource-name>
+            <url-pattern>/staff/*</url-pattern>
+            <url-pattern>/welcome.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>STAFF_ROLE</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Customer Only Content</web-resource-name>
+            <url-pattern>/customer/*</url-pattern>
+            <url-pattern>/welcome.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>CUSTOMER_ROLE</role-name>
+        </auth-constraint>
+    </security-constraint>
+</web-app>

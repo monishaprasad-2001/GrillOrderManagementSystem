@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                template="/WEB-INF/templates/authNtemplate.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="title">
+        Grill Order Management System - Admin Section
+    </ui:define>
+
+    <ui:define name="content">
+        <div style="width: 100%; max-width: 900px; margin: 40px auto; padding: 30px; font-family: Arial, sans-serif; color: #333;">
+            <div style="text-align: center; padding-bottom: 20px;">
+                <h2 style="color: #2c3e50; font-weight: 700; font-size: 28px;">Grill Order Management System</h2>
+                <h4 style="color: #34495e; font-weight: 400; font-size: 18px;">Admin Dashboard - Welcome, #{loginController.authenticatedUsername}!</h4>
+            </div>
+
+            <div style="background-color: #f8f9fa; padding: 25px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <h4 style="color: #007bff; font-size: 22px; margin-bottom: 15px;">Admin Dashboard Overview</h4>
+                <p style="color: #6c757d; font-size: 16px; margin-bottom: 20px;">
+                    Crete Staff and Customers and view all the details.
+                </p>
+                
+                <h:button outcome="addCustomer.xhtml" value="Add a new Customer"/>
+        <br/>
+        <br/>
+        <h:button outcome="addStaff.xhtml" value="Add a new Staff"/>
+        <br/>
+
+                <!-- Staff Data Table Section -->
+                <h2 class="text-secondary fw-bold mb-4">Staffs List</h2>
+                <h:panelGroup rendered="#{empty staffService.readAll()}">
+                    <h:outputText value="No staff members found." styleClass="text-danger"/>
+                </h:panelGroup>
+
+                <h:dataTable value="#{staffService.readAll()}" var="staff" styleClass="table table-striped table-hover table-responsive">
+                    <!-- Table Headers -->
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Staff ID"/>
+                        </f:facet>
+                        <h:outputText value="#{staff.id}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Name"/>
+                        </f:facet>
+                        <h:outputText value="#{staff.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Role"/>
+                        </f:facet>
+                        <h:outputText value="#{staff.role}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Phone Number"/>
+                        </f:facet>
+                        <h:outputText value="#{staff.phoneNumber}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Email"/>
+                        </f:facet>
+                        <h:outputText value="#{staff.email}"/>
+                    </h:column>
+                </h:dataTable>
+                
+                <h2 class="text-secondary fw-bold mb-4">Customers List</h2>
+                    <h:panelGroup rendered="#{empty customerService.readAll()}">
+                    <h:outputText value="No customers found." styleClass="text-danger"/>
+                </h:panelGroup>
+
+                <h:dataTable value="#{customerService.readAll()}" var="customer" styleClass="table table-striped table-hover table-responsive">
+                    <!-- Table Headers -->
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Customer ID"/>
+                        </f:facet>
+                        <h:outputText value="#{customer.id}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Name"/>
+                        </f:facet>
+                        <h:outputText value="#{customer.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Phone Number"/>
+                        </f:facet>
+                        <h:outputText value="#{customer.phoneNumber}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Email"/>
+                        </f:facet>
+                        <h:outputText value="#{customer.email}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Address"/>
+                        </f:facet>
+                        <h:outputText value="#{customer.address}"/>
+                    </h:column>
+                </h:dataTable>
+                
+                <h:form>
+                    <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                        <h:link outcome="/welcome.xhtml"
+                                style="color: #fff; background-color: #3498db; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center;">
+                            <span style="font-size: 16px; margin-right: 5px;">&#x2190;</span> Back to Home
+                        </h:link>
+                        
+                        <h:commandButton action="#{loginController.doLogout()}"
+                                         value="Logout"
+                                         style="color: #fff; background-color: #e74c3c; padding: 10px 20px; border-radius: 5px; font-weight: 600; border: none; cursor: pointer;" />
+                    </div>
+                </h:form>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <div style="background-color: #ecf0f1; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); text-align: center;">
+                    <p style="color: #2c3e50; font-size: 18px; font-weight: 500;">
+                        Access all admin features and monitor system performance from here!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

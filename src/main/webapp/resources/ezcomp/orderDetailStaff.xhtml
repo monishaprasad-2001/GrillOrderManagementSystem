@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="jakarta.faces.passthrough"
+      xmlns:f="jakarta.faces.core"
+    xmlns:ui="jakarta.faces.facelets">
+          
+    <cc:interface>
+        <cc:attribute name="formAction" required="false" method-signature="java.lang.String methodName()"/>
+        <cc:attribute name="operation" required="true" shortDescription="One of edit, read or delete" type="java.lang.String"/>
+
+        
+    </cc:interface>
+    
+    <cc:implementation>
+        <h:form>
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Order ID #{staffOrderController.orderDetails.id}" for="orderID"/>
+                    <h:inputHidden id="orderID" value="#{staffOrderController.orderDetails.id}"/>
+                    <h:message for="orderID"/>
+                </h:panelGroup>
+            </p>
+            
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Customer Name #{staffOrderController.orderDetails.customer.name}" for="customerName"/>
+                    <h:message for="customerName" />
+                </h:panelGroup>
+            </p>
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Contact Number #{staffOrderController.orderDetails.customer.phoneNumber}" for="contactNumber"/>
+                    <h:message for="contactNumber" />
+
+                </h:panelGroup>
+            </p>
+
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Email Address #{staffOrderController.orderDetails.customer.email}" for="emailAddress"/>
+                    <h:message for="emailAddress" />
+
+                </h:panelGroup>
+            </p>
+            
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Order Quantity" for="orderQuantity"/>
+                    <h:inputText
+                        disabled="#{cc.attrs.operation.equalsIgnoreCase('read') or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                        readonly="#{cc.attrs.operation.equalsIgnoreCase('read') or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                        id="orderQuantity" value="#{staffOrderController.orderDetails.quantity}" />
+                    <h:message for="orderQuantity"/>
+                </h:panelGroup>
+            </p>
+            
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Order Price" for="totalPrice"/>
+                    <h:inputText
+                        disabled="#{cc.attrs.operation.equalsIgnoreCase('read') or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                        readonly="#{cc.attrs.operation.equalsIgnoreCase('read') or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                        id="totalPrice" value="#{staffOrderController.orderDetails.price}" />
+                    <h:message for="totalPrice" />
+                </h:panelGroup>
+            </p>
+
+            <h:commandButton rendered="#{cc.attrs.operation.equalsIgnoreCase('edit')}" value="Edit Order" action="#{cc.attrs.formAction}"/>            
+            <h:commandButton rendered="#{cc.attrs.operation.equalsIgnoreCase('delete')}" value="Delete Order" action="#{cc.attrs.formAction}"/>
+
+        </h:form>
+    </cc:implementation>
+    
+    
+</html>

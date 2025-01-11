@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                template="/WEB-INF/templates/authNtemplate.xhtml"
+                xmlns:h="jakarta.faces.html">
+
+    <ui:define name="title">
+        Grill Order Management System
+    </ui:define>
+
+    <ui:define name="content">
+        <div style="background-color: #f8f8f8; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <h2 style="color: #333;">Welcome to the Grill Order Management System, #{loginController.authenticatedUsername}</h2>
+            <h4 style="color: #666;">Please choose an menu from the top bar:</h4>
+
+<!--            <h:form>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li style="margin: 10px 0;">
+                        <h:link outcome="/welcome.xhtml" style="text-decoration: none; color: #007bff;">Home</h:link>
+                    </li>
+                    <li style="margin: 10px 0;">
+                        <h:link outcome="/admin/welcome.xhtml" style="text-decoration: none; color: #007bff;">Admin Access</h:link>
+                    </li>
+                    <li style="margin: 10px 0;">
+                        <h:link outcome="/customer/welcome.xhtml" style="text-decoration: none; color: #007bff;">Customer Access</h:link>
+                    </li>
+                    <li style="margin: 10px 0;">
+                        <h:link outcome="/staff/welcome.xhtml" style="text-decoration: none; color: #007bff;">Staff Access</h:link>
+                    </li>
+                    <li style="margin: 10px 0;">
+                        <h:commandLink action="#{loginController.doLogout()}" style="text-decoration: none; color: #d9534f;">Logout</h:commandLink>
+                    </li>
+                </ul>
+            </h:form>-->
+        </div>
+    </ui:define>
+
+</ui:composition>

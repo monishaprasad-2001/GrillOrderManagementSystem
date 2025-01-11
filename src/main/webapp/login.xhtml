@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                template="/WEB-INF/templates/template.xhtml"
+                xmlns:h="jakarta.faces.html">
+
+    <ui:define name="title">
+        Grill Order Management System Login
+    </ui:define>
+
+    <ui:define name="content">
+        <div style="max-width: 400px; margin: 50px auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+            <h2 style="text-align: center; color: #333;">Login to Your Account</h2>
+            <h4 style="text-align: center; color: #666;">Please enter your credentials</h4>
+
+            <h:form>
+                <div style="margin-bottom: 20px;">
+                    <h:panelGroup layout='block'>
+                        <h:outputLabel value="Username" for="userName" style="font-weight: bold;"/>
+                        <h:inputText id="userName" value="#{loginController.user.userName}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"/>
+                        <h:message for="userName" errorStyle="color: red" />
+                    </h:panelGroup>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <h:panelGroup layout='block'>
+                        <h:outputLabel value="Password" for="password" style="font-weight: bold;"/>
+                        <h:inputSecret id="password" value="#{loginController.user.password}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"/>
+                        <h:message for="password" errorStyle="color: red" />
+                    </h:panelGroup>
+                </div>
+                <h:commandButton value="Login" action="#{loginController.doLogin()}" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;"/>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

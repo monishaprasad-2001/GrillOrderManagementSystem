@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                template="/WEB-INF/templates/authNtemplate.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="title">
+        Grill Order Management System - Customer Section
+    </ui:define>
+
+    <ui:define name="content">
+        <div style="width: 100%; max-width: 900px; margin: 40px auto; padding: 30px; font-family: Arial, sans-serif; color: #333;">
+            <div style="text-align: center; padding-bottom: 20px;">
+                <h2 style="color: #2c3e50; font-weight: 700; font-size: 28px;">Grill Order Management System</h2>
+                <h4 style="color: #34495e; font-weight: 400; font-size: 18px;">Customer Dashboard - Welcome, #{loginController.authenticatedUsername}!</h4>
+            </div>
+
+            <div style="background-color: #f8f9fa; padding: 25px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <h4 style="color: #007bff; font-size: 22px; margin-bottom: 15px;">Dashboard Overview</h4>
+                <p style="color: #6c757d; font-size: 16px; margin-bottom: 20px;">
+                    Track your grill orders, explore the menu, and manage your account details here.
+                </p>
+
+                <h:form>
+                    <!-- Orders Data Table Section for Logged-in Staff -->
+                <h2 class="text-secondary fw-bold mb-4">My Orders</h2>
+                <h:panelGroup rendered="#{empty customerController.loggedInCustomerOrders}">
+                    <h:outputText value="No orders found." styleClass="text-danger"/>
+                </h:panelGroup>
+
+                <h:dataTable value="#{customerController.loggedInCustomerOrders}" var="order" styleClass="table table-striped table-hover table-responsive">
+                    <!-- Table Headers -->
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Order ID"/>
+                        </f:facet>
+                        <h:outputText value="#{order.id}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Customer Name"/>
+                        </f:facet>
+                        <h:outputText value="#{order.customer.name}"/>
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Quantity"/>
+                        </f:facet>
+                        <h:outputText value="#{order.quantity}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Total Price"/>
+                        </f:facet>
+                        <h:outputText value="#{order.price}"/>
+                    </h:column>
+                    
+                    <h:column>
+                        <h:form>
+                        <h:commandButton value="details" action="#{customerOrderController.displayOrderDetailsPage(order)}"/>
+                        <h:commandButton value="edit" action="#{customerOrderController.displayEditOrderPage(order)}"/>
+                        <h:commandButton value="delete" action="#{customerOrderController.displayDeleteOrderPage(order)}"/>
+                    </h:form>
+                    </h:column>
+
+                </h:dataTable>
+
+                <h:commandButton value="Add New Order" action="#{customerOrderController.displayAddOrderPage()}"/>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                        <h:link outcome="/welcome.xhtml"
+                                style="color: #fff; background-color: #3498db; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center;">
+                            <span style="font-size: 16px; margin-right: 5px;">&#x2190;</span> Back to Home
+                        </h:link>
+                        
+                        <h:commandButton action="#{loginController.doLogout()}"
+                                         value="Logout"
+                                         style="color: #fff; background-color: #e74c3c; padding: 10px 20px; border-radius: 5px; font-weight: 600; border: none; cursor: pointer;" />
+                    </div>
+                </h:form>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <div style="background-color: #ecf0f1; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); text-align: center;">
+                    <p style="color: #2c3e50; font-size: 18px; font-weight: 500;">
+                        Discover our menu and track your orders in real-time!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

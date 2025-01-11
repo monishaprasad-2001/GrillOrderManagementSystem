@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                template="/WEB-INF/templates/authNtemplate.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:p="jakarta.faces.passthrough">
+
+    <ui:define name="title">
+        Add a new Order Detail Page
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Customer Name" for="customerName" />
+                    <h:inputText id="customerName" value="#{customerOrderController.customer.name}" />
+                    <h:message for="customerName" />
+                </h:panelGroup>
+            </p>
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Contact Number" for="contactNumber" />
+                    <h:inputText id="contactNumber" value="#{customerOrderController.customer.phoneNumber}" readonly="true" />
+                    <h:message for="contactNumber" />
+                </h:panelGroup>
+            </p>
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Email Address" for="emailAddress" />
+                    <h:inputText id="emailAddress" value="#{customerOrderController.customer.email}" readonly="true" />
+                    <h:message for="emailAddress" />
+                </h:panelGroup>
+            </p>
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Address" for="address" />
+                    <h:inputText id="address" value="#{customerOrderController.customer.address}" readonly="true" />
+                    <h:message for="address" />
+                </h:panelGroup>
+            </p>
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Menu Item" for="menuItem" />
+                    <h:selectOneMenu id="menuItem" value="#{customerOrderController.orderDetails.menuItem}">
+                        <f:selectItems var="item"
+                                       value="#{customerOrderController.menuItems}"
+                                       itemValue="#{item}"
+                                       itemLabel="#{item}" />
+                    </h:selectOneMenu>
+                    <h:message for="menuItem" />
+                </h:panelGroup>
+            </p>
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Order Quantity" for="orderQuantity" />
+                    <h:inputText id="orderQuantity" value="#{customerOrderController.orderDetails.quantity}" />
+                    <h:message for="orderQuantity" />
+                </h:panelGroup>
+            </p>
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Order Price" for="totalPrice" />
+                    <h:inputText id="totalPrice" value="#{customerOrderController.orderDetails.price}" />
+                    <h:message for="totalPrice" />
+                </h:panelGroup>
+            </p>
+            <h:commandButton value="Create Order" action="#{customerOrderController.saveOrder}" />
+        </h:form>
+    </ui:define>
+</ui:composition>
