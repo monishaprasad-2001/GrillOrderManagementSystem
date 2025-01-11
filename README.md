@@ -1,10 +1,10 @@
-# GrillOrderManagementSystem
-The Grill Order Management System is a streamlined application designed to manage customer orders efficiently in a grill or restaurant environment. It facilitates seamless order processing, staff coordination, and customer satisfaction through an intuitive interface and robust backend.
-
 ## GRILL ORDER MANAGEMENT SYSTEM
 `Name: Monisha Prasad 
 CWID: A20575867`
 # 
+
+The Grill Order Management System is a streamlined application designed to manage customer orders efficiently in a grill or restaurant environment. It facilitates seamless order processing, staff coordination, and customer satisfaction through an intuitive interface and robust backend.
+
 ## Project Summary
 I created the Grill Order Management System, which has 3 main entities: Customer, Staff, and OrderDetails. The system allows customers to manage their grill orders, staff members to oversee operations, and an admin to manage users and menu items.
 
